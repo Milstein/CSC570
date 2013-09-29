@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # Simulation of Monty Hall problem
 # Note that these results are obvious, but the question demands we simulate...
-import random
 
+import random
 
 NUM_SIMS = 10000000
 
@@ -14,6 +14,7 @@ swap_losses = 0
 # Run simulation of not swapping
 for i in range(0, NUM_SIMS):
     doors = ["goat", "goat", "car"]
+    # Pick one and stick with it
     if random.choice(doors) == "car":
         no_swap_wins += 1
     else:
@@ -30,18 +31,19 @@ for i in range(0, NUM_SIMS):
     # Host removes a goat
     doors.remove("goat")
 
+    # You'll swap to the remaining door
     if doors[0] == "car":
         swap_wins += 1
     else:
         swap_losses += 1
 
-
+# Calculate win rates for swapping and not swapping
 no_swap_rate = float(no_swap_wins) / NUM_SIMS
 swap_rate = float(swap_wins) / NUM_SIMS
 
 print "No-swap wins: {}, losses: {}, rate: {}".format(no_swap_wins,
                                                       no_swap_losses,
                                                       no_swap_rate)
-print "Swap wins/losses: {}/{}, rate: {}".format(swap_wins,
-                                                 swap_losses,
-                                                 swap_rate)
+print "Swap wins: {}, losses: {}, rate: {}".format(swap_wins,
+                                                   swap_losses,
+                                                   swap_rate)
